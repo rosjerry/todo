@@ -74,7 +74,8 @@ const server = http.createServer((req, res) => {
   res.end(JSON.stringify({ error: 'Not found' }));
 });
 
-// Start server on port 8080
-server.listen(8080, () => {
-  console.log('Server running on http://localhost:8080');
+const PORT = process.env.PORT;
+
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

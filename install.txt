@@ -1,0 +1,14 @@
+# install golang
+sudo yum update -y
+sudo yum install -y golang
+
+# install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash &&
+source ~/.bashrc
+nvm install --lts
+
+# install nginx
+sudo yum update -y &&
+sudo amazon-linux-extras install nginx1 -y &&
+sudo amazon-linux-extras enable nginx1 &&
+sudo systemctl start nginx
