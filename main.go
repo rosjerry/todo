@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"sync"
 )
 
@@ -21,11 +22,21 @@ var (
 )
 
 func main() {
+
+	port := os.Getenv("PORT")
+
+	if port == "" {
+    // Default to port 3000 if not set
+    port = "8081"
+  }
+
 	http.HandleFunc("/todos", todosHandler)
-	log.Println("Server running on http://localhost:8080")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal(err)
-	}
+	log.Printf("Starting server on port %s...", port)
+
+  err := http.ListenAndServe(":"+port, nil)
+  if err != nil {
+    log.Fatalf("Error starting server: %v", err)
+  }
 }
 
 func todosHandler(w http.ResponseWriter, r *http.Request) {
