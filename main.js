@@ -53,6 +53,12 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (method === 'GET' && path === ('/')) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Welcome to the To-Do API! Use /todos to manage your tasks.');
+    return;
+  }
+
   // GET /todos - Retrieve all to-dos
   if (method === 'GET' && path === '/todos') {
     res.writeHead(200);
